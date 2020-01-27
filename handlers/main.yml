@@ -1,0 +1,16 @@
+# Standards: 0.1
+---
+- name: Kill bill
+  command: killall Bill\ 2
+  register: bill_kill
+  failed_when: bill_kill.rc != 0 and "No matching processes belonging to you were found" not in bill_kill.stderr
+  become: "{{ (bill_user != ansible_user_id) | bool }}"
+  become_user: "{{ bill_user }}"
+
+- name: Start bill
+  when: bill_started
+  command: open -j /Applications/Bill\ 2.app
+  become: "{{ (bill_user != ansible_user_id) | bool }}"
+  become_user: "{{ bill_user }}"
+
+...

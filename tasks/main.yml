@@ -1,0 +1,31 @@
+# Standards: 0.1
+---
+- name: Fact bill user
+  set_fact:
+    bill_user: "{{ bill_user | default(homebrew_user) | default(ansible_user_id) }}"
+  tags:
+    - bill
+
+- become: "{{ (bill_user != ansible_user_id) | bool }}"
+  become_user: "{{ bill_user }}"
+  block:
+    - name: Install required package
+      ignore_errors: True
+      homebrew_cask:
+        name: webhippie/casks/bill
+        greedy: True
+        options: appdir=/Applications
+        accept_external_apps: False
+        state: upgraded
+      tags:
+        - bill
+
+    - name: Remove quarantine flag
+      register: bill_quarantine
+      failed_when: bill_quarantine.rc != 0 and "No such xattr" not in bill_quarantine.stderr
+      changed_when: bill_quarantine.rc == 0
+      command: xattr -d com.apple.quarantine /Applications/Bill\ 2.app
+      tags:
+        - bill
+
+...
