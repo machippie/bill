@@ -1,6 +1,6 @@
 # bill
 
-[![Build Status](https://cloud.drone.io/api/badges/machippie/bill/status.svg)](https://cloud.drone.io/machippie/google-chrome)
+[![Build Status](https://cloud.drone.io/api/badges/machippie/bill/status.svg)](https://cloud.drone.io/machippie/bill)
 
 Ansible role to configure bill.
 
