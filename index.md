@@ -1,6 +1,16 @@
 
 ## Default Variables
 
+### bill_started
+
+Restart app if already running
+
+#### Default value
+
+```yaml
+bill_started: true
+```
+
 ### bill_user
 
 User to run user-specific commands
