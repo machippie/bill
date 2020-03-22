@@ -20,12 +20,12 @@
       tags:
         - bill
 
-    - name: Remove quarantine flag
-      register: bill_quarantine
-      failed_when: bill_quarantine.rc != 0 and "No such xattr" not in bill_quarantine.stderr
-      changed_when: bill_quarantine.rc == 0
-      command: xattr -d com.apple.quarantine /Applications/Bill\ 2.app
-      tags:
-        - bill
+- name: Remove quarantine flag
+  register: bill_quarantine
+  failed_when: bill_quarantine.rc != 0 and "No such xattr" not in bill_quarantine.stderr
+  changed_when: bill_quarantine.rc == 0
+  command: xattr -d com.apple.quarantine /Applications/Bill\ 2.app
+  tags:
+    - bill
 
 ...

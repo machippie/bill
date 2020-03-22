@@ -4,4 +4,7 @@
 # @var bill_user:value: bill_user | default(homebrew_user) | default(ansible_user_id)
 # bill_user:
 
+# @var bill_started:description: Restart app if already running
+bill_started: True
+
 ...
